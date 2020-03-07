@@ -42,6 +42,24 @@ def get_date(items):
         'date' : return_me
     }
 
+def get_time(data):
+    time = set()
+    
+    for items in data:
+        time_12 = re.findall(r'([0]?([1-9]|1[012])[:|-][0-5]?[0-9]?[:|-]?[0-5]?[0-9]\ ?([AaPp][Mm]|\ )?)', items)
+        time_24 = re.findall(r'^(2[0-3]|[01]?[0-9])[:|-]([0-5]*[0-9])[:|-]?([0-5]?[0-9])\ ?$', items) 
+        
+        for i in time_12:
+            time.add(i)
+        for i in time_24:
+            time.add(i)
+    
+    time = list(time)
+    return_me = time[0] if time else None
+    return{
+        'time' : return_me[0]
+    }    
+
 def get_store_name(data):
     store_name = set()
     existing_stores = os.listdir(r'Training Data Set')

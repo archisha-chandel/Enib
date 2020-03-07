@@ -1,6 +1,6 @@
 import sys
 from model.ocr import ocr
-from model.extract import get_date, get_total_amount
+from model.extract import get_date, get_total_amount, get_time
 
 def run(imgpath):
     text, lines = ocr(imgpath)
@@ -8,7 +8,8 @@ def run(imgpath):
     print(dates)
     total_amount = get_total_amount(lines)
     print(total_amount)
-
+    time = get_time(lines)
+    print(time)
 
 
 
